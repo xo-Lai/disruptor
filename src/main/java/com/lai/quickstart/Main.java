@@ -36,7 +36,14 @@ public class Main {
          *              2.主要实现生产者和消费者之间快速，正确地传递数据的并发算法
          *
          * SequenceBarrier class :用于保持RingBuffer 的Main Published Sequence(Producer)和Consumer 之间的平衡关系；
-         *                        SequenceBarrier 还定义了决定Consumer是否还有可处理的事件逻辑gigit
+         *                        SequenceBarrier 还定义了决定Consumer是否还有可处理的事件逻辑
+         *
+         *  Event: 从生产者到消费者过程中所处理的数据单元 ，Disruptor 没有提供Event 由用户自定义
+         *  EventProcessor interface: 主要事件循环，处理Disruptor 中的Event,拥有消费者的Sequence\
+         *                            实现类BatchEventProcessor，包含了event loop有效实现，并且将回调到一个eventHandler接口的实现对象
+         *  EventHandler ：事件消费者
+         *  WorkProcess: 确保每个sequence 只被一个process消费，在同一个WorkPool中处理多个WorkProcessor不会消费同样的Sequence
+         *
          */
 
 
@@ -50,6 +57,8 @@ public class Main {
          * 1. verFactory :消息（event）工厂对象
          * 2. ringBufferSize: 容器长度
          * 3. threadFactory : 线程池
+         *                      为什么 Executor vs ThreadFactory in Disruptor constructors?
+         *                      请看：https://github.com/LMAX-Exchange/disruptor/issues/148
          * 4. ProducerType：消费类型
          * 5. WaitStrategy ：等待策略
          *     BlockingWaitStrategy: 是最低效的策略，但是对CPU的消耗也是最小并且再不同部署环境中能提供更加一致性的性能表现
