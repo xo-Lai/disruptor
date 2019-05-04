@@ -7,7 +7,7 @@ import java.nio.ByteBuffer;
 
 /**
  * @author Weifeng.Lai
- * @Title: OrderEventProducerWithTranslator
+ * @Title: Producer
  * @Package com.lai.quickstart
  * @Description: ${todo}
  * @date 2019/5/1 17:10

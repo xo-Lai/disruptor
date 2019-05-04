@@ -1,4 +1,4 @@
-package com.lai.disruptor.height;
+package com.lai.disruptor.height.chain;
 
 import com.lmax.disruptor.EventHandler;
 
@@ -10,7 +10,7 @@ import com.lmax.disruptor.EventHandler;
  * @Description: ${todo}
  * @date 2019/5/3 23:11
  */
-public class Handler4 implements EventHandler<Trade> {
+public class Handler5 implements EventHandler<Trade> {
 
     /**
      * EventHandler
@@ -23,8 +23,8 @@ public class Handler4 implements EventHandler<Trade> {
     @Override
     public void onEvent(Trade event, long sequence, boolean endOfBatch) throws Exception {
 
-        System.out.println("handler 4 : SET PRICE");
-        event.setPrice(17.0);
+        System.out.println("handler 5 : GET PRICE: " + event.getPrice());
+        event.setPrice(event.getPrice() + 3.0);
     }
 
 

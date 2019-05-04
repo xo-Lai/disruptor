@@ -11,7 +11,7 @@ import java.nio.ByteBuffer;
  * @Description: Legacy
  * @date 2019/5/1 16:48
  */
-@Deprecated
+
 public class OrderEventProducer {
 
     private RingBuffer<OrderEvent> ringBuffer;
